@@ -10,7 +10,25 @@
       <p>Lorem, ipsum dolor.</p>
     </Modal>
   </div>
+  
+  <teleport to=".modals" v-if="showModalTwo">
+    <Modal @close="toggleModalTwo">
+      <template v-slot:links>
+        <h2>Hello from modal 2</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, harum.</p>
+        <p>Lorem, ipsum dolor.</p>
+        <a href="">Modal 2 link</a>
+
+      </template>
+    </Modal>
+  </teleport>
+
+  <p>Welcome...</p>
+
   <button @click.shift="toggleModal">open modal (shift + click)</button>
+  <br>
+  <button @click="toggleModalTwo">open modal 2</button>
+
 </template>
 
 <script>
@@ -24,13 +42,16 @@ export default {
   data() {
     return {
       title: "My first vue app :)",
-      header: "Sign up for the Giveaway!",
-      showModal: false
+      showModal: false,
+      showModalTwo: false,
     }
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo
     }
   }
 }
@@ -38,7 +59,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app, .modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
